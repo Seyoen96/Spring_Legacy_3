@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles requests for the application home page.
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -28,12 +30,22 @@ public class HomeController {
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
 	}
+	
+	@RequestMapping(value = "/test")
+	public ModelAndView test(ModelAndView mv) {
+		
+		mv = new ModelAndView();
+		String name = "nnn";
+		mv.addObject("name",name);
+		mv.setViewName("test2");
+		return mv;
+	}
+	
 	
 }
